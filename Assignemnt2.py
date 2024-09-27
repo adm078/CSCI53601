@@ -1,20 +1,25 @@
 # Assignement 2 Ayoub Eabidawi CSCI536_01
 # Calculate the federal income tax of individual filers. 
-ConitionForLoop = True
 
+#Part 1
+ConitionForOuterLoop = True
 
-while (ConitionForLoop):
+#outer Loop 
+while (ConitionForOuterLoop):
     NewUser= str(input("Do You Want To Start New Process ? Yes/No : ")) 
     
-    if NewUser == 'Yes' or NewUser =='yes':
+#Check If the user wants to  Repeat the process
+    if  NewUser.lower()== 'yes':
         Name = str(input("Enter your name: "))
         SSN = input("Enter you Social Security Number: ")
         Salary= float(input("Enter your Salary: "))
         Taxowen = float()
         percent = 1.0
-        condition = True
+        conditionForInnerLoop = True
         
-        while (condition):
+        
+#Inner Loop To Check For the SSN Validation
+        while (conditionForInnerLoop):
             
           if  SSN.isdigit() and len(SSN) == 9:
               
@@ -25,8 +30,8 @@ while (ConitionForLoop):
              SSN=input("Unvalid Number, Please re-enter your Social Security Number: ")
             
         
-        
-        if Salary <= 11000:
+#To Check what tax percentage will be applied to the salary
+        if Salary>0 and Salary <= 11000:
             percent = 10.0
             Taxowen = Salary * 0.10
             print("Since your salary is below $11,000, you fall into the 10.0% tax bracket.")
@@ -68,14 +73,26 @@ while (ConitionForLoop):
             print("Since your salary is over $578,125, you are in the 37.0% tax bracket.")
             print(round(Taxowen,2))
             
-     
-        width = 60
-     
+        # To Check if salary legit 
+        else:
+            print("Your Salary cant be 0 or negative!")
+            Salary= float(input("Please Re-Enter your Salary: "))
+            if Salary <=0:
+                print("Bye")
+                break
+#End of Condition
+
+            
+#Function to design and print the recepit beginning
+        width = 60 
         def format_line(title, value):
             dots_count = width - len(title) - len(value) - 2  # 2 accounts for the '|' at both ends
             dots = '.' * dots_count
             return f"|{title}{dots}{value}|"
+#Function Ends
 
+
+#Printing Recepit starts
         print("-" * width)
         print(format_line("Name:", Name))
         print(format_line("SSN:", SSN))
@@ -84,16 +101,24 @@ while (ConitionForLoop):
         percent = Taxowen / Salary
         percent = percent*100
         tax_statement = f"Federal Income Tax Due: ${round(Taxowen, 2)} ({round(percent, 1)}% of income)"
-        # Calculate the space needed to align the closing bracket with '|'
-        space_needed = width - len(tax_statement)  # +1 for the '|' at the end
+# Calculate the space needed to align the closing bracket with '|'
+        space_needed = width - len(tax_statement)
         print(' ' * space_needed + tax_statement)  # Right-align by adding leading spaces
-        print(" ")
+#Printing Recepit Ends   
+     
+        print(" ") # NEW Line
+        
+        
+#Making sure that user really wants to quit the application        
     else:
-         FinalDesicion = input("Are You Sure You Want To Exit ?")
-         if FinalDesicion =='yes' or FinalDesicion =='Yes':
+         FinalDesicion = input("Are You Sure You Want To Exit ? ")
+         if FinalDesicion.lower()== 'yes':
             print("Alright, Have a Good Day ! :)")
-            ConitionForLoop= False
+            ConitionForOuterLoop= False
          else:
             print("Okay Make Sure to Answer Yes with the correct splling")
             continue
          
+#*********************** PART 2 ***********************
+
+
