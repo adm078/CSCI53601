@@ -9,6 +9,7 @@ while (ConitionForOuterLoop):
     NewUser= str(input("Do You Want To Start New Process ? Yes/No : ")) 
     
 #Check If the user wants to  Repeat the process
+#Taking customer Inforamtion
     if  NewUser.lower()== 'yes':
         Name = str(input("Enter your name: "))
         SSN = input("Enter you Social Security Number: ")
@@ -17,7 +18,10 @@ while (ConitionForOuterLoop):
         percent = 1.0
         conditionForInnerLoop = True
         
+#************* customer Inforamtion Section Ends *************
         
+        
+#*********** SSN validation check Starts *************
 #Inner Loop To Check For the SSN Validation
         while (conditionForInnerLoop):
             
@@ -27,8 +31,8 @@ while (ConitionForOuterLoop):
               break
           
           else:
-             SSN=input("Unvalid Number, Please re-enter your Social Security Number: ")
-            
+             SSN=input("Invalid SSN Number, Please re-enter your Social Security Number: ")
+#*********** SSN validation check Ends *************            
         
 #To Check what tax percentage will be applied to the salary
         if Salary>0 and Salary <= 11000:
